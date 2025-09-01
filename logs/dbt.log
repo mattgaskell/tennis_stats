@@ -1,0 +1,29 @@
+[0m15:42:49.914408 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001906BBA42C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001906BF7BCE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001906BA5E690>]}
+
+
+============================== 15:42:49.935367 | 69e0bcc0-3ce5-4c45-94de-9c1aacfdc152 ==============================
+[0m15:42:49.935367 [info ] [MainThread]: Running with dbt=1.10.9
+[0m15:42:49.937658 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'write_json': 'True', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'version_check': 'True', 'invocation_command': 'dbt init tennis_dbt', 'log_format': 'default', 'warn_error': 'None', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'empty': 'None', 'quiet': 'False', 'printer_width': '80', 'use_experimental_parser': 'False', 'log_path': 'logs', 'indirect_selection': 'eager', 'profiles_dir': 'C:\\Users\\matta\\.dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True'}
+[0m15:42:50.048119 [debug] [MainThread]: Starter project path: C:\Users\matta\anaconda3\envs\dbt312\Lib\site-packages\dbt\include\starter_project
+[0m15:42:50.146158 [info ] [MainThread]: 
+Your new dbt project "tennis_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:42:50.148581 [info ] [MainThread]: Setting up your profile.
+[0m15:49:58.619195 [info ] [MainThread]: Profile tennis_dbt written to C:\Users\matta\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:49:58.622532 [debug] [MainThread]: Command `dbt init` succeeded at 15:49:58.622532 after 429.44 seconds
+[0m15:49:58.624562 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001906BC84770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019009D54830>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000190073E8980>]}
+[0m15:49:58.625565 [debug] [MainThread]: Flushing usage events
+[0m15:50:00.863290 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: atp_matches                 # logical name in dbt
+    database: tennis-470315    # BigQuery project
+    schema: tennis_data               # BigQuery dataset that holds your uploads
+    tables:
+      - name: atp_matches_2022
+      - name: atp_matches_2023
+      - name: atp_matches_2024
