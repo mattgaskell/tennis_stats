@@ -5,6 +5,10 @@ sources:
     database: tennis-470315    # BigQuery project
     schema: tennis_data               # BigQuery dataset that holds your uploads
     tables:
+      - name: atp_matches_2018
+      - name: atp_matches_2019
+      - name: atp_matches_2020
+      - name: atp_matches_2021
       - name: atp_matches_2022
       - name: atp_matches_2023
       - name: atp_matches_2024

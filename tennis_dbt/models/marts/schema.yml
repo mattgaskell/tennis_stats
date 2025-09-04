@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_yearly_player_stats
+    description: "Player stats per calendar year"
+    columns:
+      - name: player_id
+        description: "Player identifier"
+        tests:
+          - not_null
+      - name: year
+        description: "Year of play"
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - player_id
+            - year

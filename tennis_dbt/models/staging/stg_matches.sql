@@ -1,7 +1,6 @@
 {{ config(materialized='view') }}
 
 select 
-uuid() as match_id,
 tourney_id as tournament_id,
 tourney_name as tournament_name,
 surface,
@@ -31,7 +30,7 @@ loser_ioc as loser_country_code,
 loser_age as loser_age_yrs,
 
 --match metrics
-score
+score,
 minutes as match_length_mins,
 w_SvGms + l_SvGms as games,
 w_svpt + l_svpt as pts,
@@ -49,12 +48,12 @@ w_1stWon as winner_1st_serve_pts_won,
 w_2ndWon as winner_2nd_serve_pts_won,
 w_SvGms as winner_serve_games,
 w_SvGms - (w_bpFaced - w_bpSaved) as winner_serve_games_won,
-l_SvGms as winner_receiving_games,
-l_bpFaced - l_bpSaved as winner_receiving_games_won,
+l_SvGms as winner_return_games,
+l_bpFaced - l_bpSaved as winner_return_games_won,
 w_bpSaved as winner_bp_saved,
 w_bpFaced as winner_bp_faced,
-l_svpt as winner_receiving_pts,
-l_svpt - l_1stWon - l_2ndWon as winner_receiving_pts_won,
+l_svpt as winner_return_pts,
+l_svpt - l_1stWon - l_2ndWon as winner_return_pts_won,
 l_bpFaced as winner_bp,
 l_bpFaced - l_bpSaved as winner_bp_won,
 winner_rank,
@@ -72,16 +71,16 @@ l_1stWon as loser_1st_serve_pts_won,
 l_2ndWon as loser_2nd_serve_pts_won,
 l_SvGms as loser_serve_games,
 l_SvGms - (l_bpFaced - l_bpSaved) as loser_serve_games_won,
-w_SvGms as loser_receiving_games,
-w_bpFaced - w_bpSaved as loser_receiving_games_won,
+w_SvGms as loser_return_games,
+w_bpFaced - w_bpSaved as loser_return_games_won,
 l_bpSaved as loser_bp_saved,
 l_bpFaced as loser_bp_faced,
-w_svpt as loser_receiving_pts,
-w_svpt - w_1stWon - w_2ndWon as loser_receiving_pts_won,
+w_svpt as loser_return_pts,
+w_svpt - w_1stWon - w_2ndWon as loser_return_pts_won,
 w_bpFaced as loser_bp,
 w_bpFaced - w_bpSaved as loser_bp_won,
 loser_rank,
 loser_rank_points
 
 from `{{ target.project }}.tennis_data.atp_matches_*`
-where cast(_TABLE_SUFFIX as int) between 2022 and 2024              
+where cast(_TABLE_SUFFIX as int) between 2018 and 2024              
