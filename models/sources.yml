@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: atp_matches  
+    database: tennis-470315
+    schema: tennis_data
+    tables:
+      - name: 'atp_matches_2024'
+      - name: 'atp_matches_2025'

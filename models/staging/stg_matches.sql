@@ -1,0 +1,85 @@
+select 
+tourney_id as tournament_id,
+case when lower(tourney_name) = 'us open' then 'US Open' else tourney_name end as tournament_name,
+surface,
+draw_size as tournament_draw_size,
+tourney_level as tournament_level,
+parse_date('%Y%m%d', cast(tourney_date as string)) as tournament_date,
+match_num as match_number,
+best_of,
+round,
+
+--winner properties
+winner_id as winner_player_id,
+winner_seed,
+winner_name,
+winner_hand,
+winner_ht as winner_height_cm,
+winner_ioc as winner_country_code,
+winner_age as winner_age_yrs,
+
+--loser properties
+loser_id as loser_player_id,
+loser_seed,
+loser_name,
+loser_hand,
+loser_ht as loser_height_cm,
+loser_ioc as loser_country_code,
+loser_age as loser_age_yrs,
+
+--match metrics
+score,
+minutes as match_length_mins,
+w_SvGms + l_SvGms as games,
+w_svpt + l_svpt as pts,
+array_length(split(score, ' ')) as sets,
+
+--winner metrics
+w_1stWon + w_2ndWon + l_svpt - l_1stWon - l_2ndWon as winner_pts_won,
+w_SvGms - (w_bpFaced - w_bpSaved) + l_bpFaced - l_bpSaved as winner_games_won,
+w_ace as winner_aces,
+w_df as winner_dfs,
+w_svpt as winner_serve_pts,
+w_1stWon + w_2ndWon as winner_serve_pts_won,
+w_1stIn as winner_1st_serves_in,
+w_1stWon as winner_1st_serve_pts_won,
+w_2ndWon as winner_2nd_serve_pts_won,
+w_SvGms as winner_serve_games,
+w_SvGms - (w_bpFaced - w_bpSaved) as winner_serve_games_won,
+l_SvGms as winner_return_games,
+l_bpFaced - l_bpSaved as winner_return_games_won,
+w_bpSaved as winner_bp_saved,
+w_bpFaced as winner_bp_faced,
+l_svpt as winner_return_pts,
+l_svpt - l_1stWon - l_2ndWon as winner_return_pts_won,
+l_bpFaced as winner_bp,
+l_bpFaced - l_bpSaved as winner_bp_won,
+winner_rank,
+winner_rank_points,
+
+--loser metrics
+l_1stWon + l_2ndWon + w_svpt - w_1stWon - w_2ndWon as loser_pts_won,
+l_SvGms - (l_bpFaced - l_bpSaved) + w_bpFaced - w_bpSaved as loser_games_won,
+l_ace as loser_aces,
+l_df as loser_dfs,
+l_svpt as loser_serve_pts,
+l_1stWon + l_2ndWon as loser_serve_pts_won,
+l_1stIn as loser_1st_serves_in,
+l_1stWon as loser_1st_serve_pts_won,
+l_2ndWon as loser_2nd_serve_pts_won,
+l_SvGms as loser_serve_games,
+l_SvGms - (l_bpFaced - l_bpSaved) as loser_serve_games_won,
+w_SvGms as loser_return_games,
+w_bpFaced - w_bpSaved as loser_return_games_won,
+l_bpSaved as loser_bp_saved,
+l_bpFaced as loser_bp_faced,
+w_svpt as loser_return_pts,
+w_svpt - w_1stWon - w_2ndWon as loser_return_pts_won,
+w_bpFaced as loser_bp,
+w_bpFaced - w_bpSaved as loser_bp_won,
+loser_rank,
+loser_rank_points
+
+from `{{ target.project }}.tennis_data.atp_matches_*`
+where 1=1 
+and cast(_TABLE_SUFFIX as int) between 1968 and 2025              

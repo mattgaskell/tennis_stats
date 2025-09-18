@@ -1,0 +1,15 @@
+name: 'tennis_stats'
+version: '1.0.0'
+profile: 'tennis_dbt'
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+models:
+  tennis_stats:
+    marts:
+      +materialized: table
+    staging:
+      +materialized: view

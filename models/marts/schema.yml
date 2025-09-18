@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_yearly_player_stats
+    description: "Player stats for each player-year pair"
+    columns:
+      - name: player_id
+        description: "Player identifier"
+        tests:
+          - not_null
+      - name: year
+        description: "Year of play"
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - player_id
+              - year
+
+  - name: fct_player_results
+    description: "Player stats for each player-game pair"
+    columns:
+      - name: player_name
+        description: "Player name string"
+        tests:
+          - not_null
+      - name: player_match_number
+        description: "Match counter per player starting at zero"
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - player_name
+              - player_match_number
+  
